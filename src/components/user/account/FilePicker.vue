@@ -185,10 +185,14 @@
             console.log(response.data);
             const { emitEvent } = useEventBus();
             emitEvent('eventSuccess','Upload avatars successfully !');
-            setTimeout(()=>{
-              window.location = window.location.href;
-              this.reset();
-            },1000)
+
+            // CHÚ Ý là thời gian upload ảnh lên django đã deploy nó sẽ lâu hơn so với ở local 
+            // setTimeout chỉ dùng khi các hoạt động diễn ra nhanh , ta muốn nó chậm lại để xem notification 
+            // còn đây nó chậm sẵn rồi nên không cần đặt nữa 
+            // setTimeout(()=>{
+            window.location = window.location.href;
+            this.reset();
+            // },1000) // thời gian upload cộng thêm thời gian chờ 4s nữa nên nó lâu 
           })
           .catch(error => {
             console.log(error);
@@ -294,14 +298,14 @@
   .upload-card{
     border-radius: 10px;
     padding: 5px 15px;
-    min-height: 150px;
+    min-height: 300px;
     min-width: 150px;
 
     background-color: #ffffff;
     -webkit-box-shadow: 2px 4px 20px 2px #dadada;
     box-shadow: 2px 4px 20px 2px #dadada;
     margin: auto;
-    width: 50%;
+    /* width: 50%; */
   }
   .dropbox *{
     cursor: pointer;

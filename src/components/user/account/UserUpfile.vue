@@ -106,10 +106,11 @@ export default {
                 console.log(data);
                 const { emitEvent } = useEventBus();
                 emitEvent('eventUpfile');
-                setTimeout(()=>{emitEvent('eventResetUpfile');}, 2000);
+                // setTimeout(()=>{emitEvent('eventResetUpfile');}, 2000);
 
-                emitEvent('eventSuccess','Update avatars successfully !');
-                setTimeout(()=>{window.location=window.location.href;}, 2000);
+                emitEvent('eventSuccess','Update avatars successfully !'); // 1
+                // nguyên nhân là do bất đồng bộ => 1,2 chạy trước cả event eventUpfile nên ảnh không được upload lên 
+                // setTimeout(()=>{window.location=window.location.href;}, 2000); // 2
             }) 
             .catch(error=>{
                 console.log(error);
